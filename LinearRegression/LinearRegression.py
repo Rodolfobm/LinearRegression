@@ -5,7 +5,7 @@ Created on Mon Jan 30 17:28:51 2017
 @author: Rodolfo Braga Martini
 """
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 def compute_error_for_line_given_points(b, m, points):
     #Calculate the difference between every point and the slope and then square it (So it remains always positive)
@@ -80,6 +80,11 @@ def run():
     [b, m] = gradient_descent_runner(graphic_points, initial_b, initial_m, learning_rate, num_iterations)
     
     print("Ending point at b = {1}, m = {2} and error = {3}".format(num_iterations, b, m, compute_error_for_line_given_points(b, m, graphic_points)))
+    
+    #Added scatter to visualize line
+    plt.scatter(graphic_points[1:-1, 0], graphic_points[1:-1, 1], marker='D', color=['red', 'blue', 'pink', 'green'])
+    plt.plot([0, 80], [b, m*80+b])
+    plt.show()
     
 
 if __name__ == '__main__':
